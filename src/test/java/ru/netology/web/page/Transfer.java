@@ -29,4 +29,21 @@ public class Transfer {
         return new DashboardPage();
     }
 
+    public DashboardPage transferFromFirstToFirst(DataHelper.AuthInfo info, int sum) {
+        transferButtonToFirst.click();
+        transferSum.setValue(String.valueOf(sum));
+        transferFrom.setValue(info.getAccountNumberOne());
+        actionTransfer.click();
+        return new DashboardPage();
+    }
+
+    public DashboardPage transferFromSecondToSecond(DataHelper.AuthInfo info, int sum) {
+        transferButtonToSecond.click();
+        transferSum.setValue(String.valueOf(sum));
+        transferFrom.setValue(info.getAccountNumberTwo());
+        actionTransfer.click();
+        return new DashboardPage();
+    }
+
+
 }
