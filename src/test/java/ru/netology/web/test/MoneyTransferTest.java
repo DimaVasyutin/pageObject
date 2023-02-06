@@ -106,5 +106,33 @@ class MoneyTransferTest {
         Assertions.assertEquals(expected, balanceAfter);
     }
 
+    @Test
+    void shouldTransferMoneyFromFirstToFirst() {
+        var loginPage = new LoginPageV2();
+        var transfer = new Transfer();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        int balanceBefore = verificationPage.validVerify(verificationCode).getCardBalance(idFirstCard);
+        int sum = 1000;
+        int balanceAfter = transfer.transferFromFirstToFirst(authInfo, sum).getCardBalance(idFirstCard);
+        int expected = balanceBefore;
+        Assertions.assertEquals(expected, balanceAfter);
+    }
+
+    @Test
+    void shouldTransferMoneyFromSecondToSecond() {
+        var loginPage = new LoginPageV2();
+        var transfer = new Transfer();
+        var authInfo = DataHelper.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
+        int balanceBefore = verificationPage.validVerify(verificationCode).getCardBalance(idSecondCard);
+        int sum = 1000;
+        int balanceAfter = transfer.transferFromSecondToSecond(authInfo, sum).getCardBalance(idSecondCard);
+        int expected = balanceBefore;
+        Assertions.assertEquals(expected, balanceAfter);
+    }
+
 }
 
